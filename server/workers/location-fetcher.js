@@ -1,12 +1,18 @@
-var fs = require('fs');
+var xlsx = require('xlsx');
+var path = require('path');
 
-exports.locationFetcher = function(filepath){
-	fs.readFile(filepath, function(error, data){
-		if(error){
-			// TO DO: Handle Error
-			console.log(error)
-		} else {
-			console.log(data.split('\n'));
-		}
-	})
-}
+module.exports = function(filepath){
+	var workbook = xlsx.readFile(path.join(__dirname,'../../data/' + filepath));
+	var entries = {};
+
+	// Data Cleanup
+	var data = workbook.Sheets.Sheet1;
+	for(var key in data){
+			var index = key.slice(1);
+			entries[index] = entries[index] || [];
+			entries[index].push(parseInt(data[key].w))
+	};
+	delete entries['ref'];
+	delete entries['1'];
+	console.log(entries);
+};
