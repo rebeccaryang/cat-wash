@@ -2,7 +2,11 @@
   "name": "cat-wash",
   "version": "1.0.0",
   "dependencies": {
+    "algorithmbox": "^1.0.1",
     "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "lodash": "^4.5.1",
+    "path": "^0.12.7",
     "xlsx": "^0.8.0"
   },
   "scripts": {
